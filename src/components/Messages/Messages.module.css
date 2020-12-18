@@ -1,0 +1,13 @@
+.dialogs {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  padding: 0.5rem;
+}
+.users_list {
+  margin: 0 1rem 0 0;
+}
+
+.users {
+}
+.messages {
+}

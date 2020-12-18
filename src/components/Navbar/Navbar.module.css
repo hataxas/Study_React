@@ -1,0 +1,17 @@
+.nav {
+  grid-area: nav;
+  background-color: #696969;
+  padding: 10px;
+}
+.item a {
+  display: block;
+  font-size: 20px;
+  color: #fff;
+  padding: 0 0 10px 0;
+}
+.item:last-child a {
+  padding: 50px 0 0 0;
+}
+.item a.active {
+  color: #000;
+}

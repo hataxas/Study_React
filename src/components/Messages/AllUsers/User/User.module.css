@@ -1,0 +1,14 @@
+.user {
+  display: block;
+  color: #333333;
+  font-size: 1.5rem;
+  line-height: 3rem;
+  padding: 0.5rem;
+}
+.user.active {
+  color: #fff;
+  background-color: #696969;
+}
+.user img {
+  width: 3rem;
+}
