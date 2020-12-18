@@ -4,13 +4,6 @@ import NewMessage from './NewMessage/NewMessage';
 
 const AllMessages = (props) => {
 
-  // let messagesData = [
-  //   {id: 1, text: 'Hi eweryone!'},
-  //   {id: 2, text: 'How are you?'},
-  //   {id: 3, text: 'My name is Natalia.'},
-  //   {id: 4, text: 'Hi!!!'}
-  // ]
-
   let AllMessages = props.messagesData.map (
     (message) => (<Message text={message.text} />)
   );

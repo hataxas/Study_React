@@ -13,19 +13,6 @@ let initialState = {
 
 const profileReducer = (state = initialState, action) => {
 
-  // if (action.type === ADD_POST) {
-  //   let NewPost = {
-  //     id: 5,
-  //     text: state.newPostText,
-  //     likesCount: 0
-  //   };
-  //   state.postsData.push(NewPost);
-  //   //! убираем текст из поля ввода
-  //   state.newPostText = '';
-  // } else if (action.type === UPDATE_NEW_POST_TEXT) {
-  //   state.newPostText = action.newText;
-  // }
-
   //! альтернативная запись (вместо использования if и else if мы можем использовать switch)
   switch (action.type) {
     case ADD_POST:

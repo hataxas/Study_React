@@ -37,18 +37,6 @@ let initialState = {
 
 const messagesReducer = (state = initialState, action) => {
 
-  // if (action.type === ADD_MESSAGE) {
-  //   let NewMessage = {
-  //     id: 7,
-  //     text: state.newMessageText,
-  //     sendBy: 'Panda'
-  //   };
-  //   state.messagesData.push(NewMessage);
-  //   state.newMessageText = '';
-  // } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
-  //   state.newMessageText = action.newText;
-  // }
-  //! альтернативная запись
   switch (action.type) {
     case ADD_MESSAGE:
       let NewMessage = {
