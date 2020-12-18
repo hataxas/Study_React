@@ -11,9 +11,9 @@ let rerenderEntireTree = (state) => {  //! аргумент state к нам пр
     <BrowserRouter>
       <App
         state={state} //! мы присваиваем state тот аргумент, который получает функция при вызове, в нашем случае state={store.getState()}
-
         //! мы передадим функцию dispatch(action) дальше через props:
         dispatch={store.dispatch.bind(store)}
+        store={store}
       />
     </BrowserRouter>,
     document.getElementById('root')

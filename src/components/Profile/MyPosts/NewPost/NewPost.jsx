@@ -1,6 +1,5 @@
 import style from './NewPost.module.css';
 import React from 'react';
-import {addPostActionCreator, updateNewPostTextActionCreator} from '../../../../redux/profile_reducer';
 
 
 const NewPost = (props) => {
@@ -8,13 +7,14 @@ const NewPost = (props) => {
   let newPostElement = React.createRef();
 
   let addPost = () => {
-    //props.addPost();
-    props.dispatch(addPostActionCreator());
+    //! Для того чтобы компоненты оставались независимыми, нам нужно сделать так чтобы они ничего не знали про store и в часности про dispatch. Добъемся этого при помощи контейнерной компоненты, которая будет принимать всю эту информацию. Создадим файл NewPostContainer и туда будем передавать информацию из внешнего мира, а компонента NewPost останется презентационной
+    //props.dispatch(addPostActionCreator());
+    props.addPost();
   }
   let updateNewPostText = () => {
     let text = newPostElement.current.value;
-    //props.updateNewPostText(text);
-    props.dispatch(updateNewPostTextActionCreator(text));
+    //props.dispatch(updateNewPostTextActionCreator(text));
+    props.updateNewPostText(text);
   }
 
   return (
