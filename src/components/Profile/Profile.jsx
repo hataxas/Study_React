@@ -1,5 +1,5 @@
 import MainImage from './MainImage/MainImage';
-import MyPosts from './MyPosts/MyPosts';
+import MyPostsContainer from './MyPosts/MyPostsContainer';
 import style from './Profile.module.css';
 import AvatarImg from './User/AvatarImg/AvatarImg';
 import Description from './User/Description/Description';
@@ -12,12 +12,7 @@ const Profile = (props) => {
           <AvatarImg />
           <Description />
         </div>
-        <MyPosts
-          // postsData = {props.state.postsData}
-          // newPostText = {props.state.newPostText}
-          // dispatch = {props.dispatch}
-          store = {props.store}
-        />
+        <MyPostsContainer />
       </div>
   );
 }

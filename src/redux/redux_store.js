@@ -9,4 +9,7 @@ let reducers = combineReducers({
 
 let store = createStore(reducers);
 
+//! сохраняем наш store глобально (чтбы мы могли его использовать для проверок)
+window.store = store;
+
 export default store;

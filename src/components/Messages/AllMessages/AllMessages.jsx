@@ -1,20 +1,20 @@
 import style from './AllMessages.module.css';
-import Message from './Message/Message';
-import NewMessage from './NewMessage/NewMessage';
+//import Message from './Message/Message';
+import NewMessageContainer from './NewMessage/NewMessageContainer';
 
 const AllMessages = (props) => {
 
-  let AllMessages = props.messagesData.map (
-    (message) => (<Message text={message.text} />)
-  );
+  // let AllMessages = props.store.getState().messagesPage.messagesData.map (
+  //   (message) => (<Message text={message.text} />)
+  // );
 
   return (
     <div className={style.messages}>
       <div className={style.all_messages}>
-        {AllMessages}
+        {props.messages}
       </div>
       <div className={style.new_message}>
-        <NewMessage newMessageText={props.newMessageText} dispatch={props.dispatch}/>
+        <NewMessageContainer />
       </div>
     </div>
 

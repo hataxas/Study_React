@@ -19,8 +19,8 @@ function App(props) {
         <div className="app-wrapper-content">
 
           {/* //!когда route увидит заданный адресс, он отрисует анонимную функцию, которая вызывает необходимую компоненту */}
-          <Route path='/profile' render={() => <Profile store={props.store} />} />
-          <Route path='/messages' render={() => <Messages state={props.state.messagesPage} dispatch={props.dispatch} />} />
+          <Route path='/profile' render={() => <Profile />} />
+          <Route path='/messages' render={() => <Messages />} />
           <Route path='/news' render={() => <News />} />
           <Route path='/music' render={() => <Music />} />
           <Route path='/settings' render={() => <Settings />} />
