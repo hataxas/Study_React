@@ -15,25 +15,22 @@ const profileReducer = (state = initialState, action) => {
 
   //! альтернативная запись (вместо использования if и else if мы можем использовать switch)
   switch (action.type) {
-    case ADD_POST: {
+    case ADD_POST:
       let NewPost = {
         id: 5,
         text: state.newPostText,
         likesCount: 0
       };
-      //! создаем копию нашего state и будем менять ее, а не оригинал (иначе react-redux не перерисовывает наши страницы, т.к. по правилам функции не должны менять входящие в них данные)
-      let stateCopy = { ...state };
-      stateCopy.postsData = [...state.postsData];
-      stateCopy.postsData.push(NewPost);
-      //! убираем текст из поля ввода
-      stateCopy.newPostText = '';
-      return stateCopy;
-    }
-    case UPDATE_NEW_POST_TEXT: {
-      let stateCopy = { ...state };
-      stateCopy.newPostText = action.newText;
-      return stateCopy;
-    }
+      return {
+        ...state,
+        postsData: [...state.postsData, NewPost], //! добавляем NewPost в копию нашего массива postsData
+        newPostText: '' //! очищаем поле ввода
+      };
+    case UPDATE_NEW_POST_TEXT:
+      return {
+        ...state,
+        newPostText: action.newText
+      };
     default:
       return state;
   }

@@ -1,8 +1,6 @@
-//import AllMessages from './AllMessages/AllMessages';
 import AllMessagesContainer from './AllMessages/AllMessagesContainer';
-import AllUsers from './AllUsers/AllUsers';
+import AllUsersContainer from './AllUsers/AllUsersContainer';
 import style from './Messages.module.css';
-// import UsersMessages from './UsersMessages/UsersMessages';
 
 
 const Messages = (props) => {
@@ -10,7 +8,7 @@ const Messages = (props) => {
     <div className={style.dialogs}>
       <div className={style.users_list}>
         <div className={style.users}>
-          <AllUsers />
+          <AllUsersContainer />
         </div>
       </div>
       <div className={style.messages}>

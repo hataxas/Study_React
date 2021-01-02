@@ -35,38 +35,6 @@ let initialState = {
   ]
 }
 
-// const messagesReducer = (state = initialState, action) => {
-
-//   switch (action.type) {
-//     case ADD_MESSAGE: {
-//       let NewMessage = {
-//         id: 7,
-//         text: state.newMessageText,
-//         sendBy: 'Panda'
-//       };
-//       let stateCopy = {
-//         ...state,
-//         newMessageText: '',
-//         messagesData: [...state.messagesData, NewMessage], //! вместо push(NewMessage) мы просто добавляем NewMessage в наш массив через запятую
-//       };
-//       //stateCopy.messagesData = [...state.messagesData];
-//       //stateCopy.messagesData.push(NewMessage);
-//       //stateCopy.newMessageText = '';
-//       return stateCopy;
-//     }
-//     case UPDATE_NEW_MESSAGE_TEXT: {
-//       let stateCopy = {
-//         ...state,
-//         newMessageText: action.newText //! вносим изменения непосредственно во время копирования объекта
-//       };
-//       // stateCopy.newMessageText = action.newText;
-//       return stateCopy;
-//     }
-//     default:
-//       return state;
-//   }
-// }
-
 //! мы можем обойтись без переменной stateCopy (будем просто создавать копию и сразу ее возвращать)
 const messagesReducer = (state = initialState, action) => {
   switch (action.type) {
