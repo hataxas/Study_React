@@ -24,7 +24,7 @@ import AllMessages from './AllMessages';
 let mapMessagesDataToMessages = (state) => {
   return {
     messages: state.messagesPage.messagesData.map (
-      (message) => (<Message text={message.text} />)
+      (message) => (<Message key={message.id} text={message.text} />)
     )
   }
 }

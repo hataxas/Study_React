@@ -29,7 +29,7 @@ import MyPosts from './MyPosts';
 let mapPostsDataToPosts = (state) => {
   return {
     posts: state.profilePage.postsData.map(
-      post => <Post message= {post.text} like={post.likesCount} />
+      post => <Post key={post.id} message= {post.text} like={post.likesCount} />
     )
   }
 }
