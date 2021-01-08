@@ -19,7 +19,7 @@ const profileReducer = (state = initialState, action) => {
       let NewPost = {
         id: 5,
         text: state.newPostText,
-        likesCount: 0
+        likesCount: 42
       };
       return {
         ...state,

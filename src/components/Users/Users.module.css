@@ -1,0 +1,48 @@
+.users {
+}
+.container {
+  display: flex;
+  padding: 10px;
+}
+.avatar {
+  padding: 0 10px 0;
+}
+.img {
+  width: 60px;
+  height: 60px;
+}
+.button {
+  display: block;
+  padding: 3px;
+  margin: 5px auto 15px;
+  /* background: #333333; */
+  /* color: #fff; */
+}
+.data {
+  border: 1px solid #000;
+  margin: 0 10px 15px;
+  padding: 10px;
+  width: 100%;
+  display: grid;
+  grid-template: 1fr / 1fr 1fr;
+}
+.nameStatus {
+  display: grid;
+  grid-template: 1fr 1fr / 1fr;
+}
+.name {
+  font-size: 20px;
+}
+.status {
+  font-size: 15px;
+  align-self: end;
+}
+.location {
+  font-size: 15px;
+  justify-self: end;
+}
+.country {
+  margin: 0 0 10px;
+}
+.city {
+}
