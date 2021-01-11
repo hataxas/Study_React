@@ -1,0 +1,11 @@
+{
+  "count": 6,
+  "result": [
+    { "id": 1, "text": "Hi eweryone!", "sentBy": "Natalia" },
+    { "id": 2, "text": "How are you?", "sentBy": "Natalia" },
+    { "id": 3, "text": "My name is Panda.", "sentBy": "Panda" },
+    { "id": 4, "text": "My name is Alisa.", "sentBy": "Alisa" },
+    { "id": 5, "text": "My name is Katia.", "sentBy": "Katia" },
+    { "id": 6, "text": "My name is Dima.", "sentBy": "Dmytro" }
+  ]
+}

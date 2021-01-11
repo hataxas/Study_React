@@ -5,6 +5,53 @@ const SET_USERS_LIST = 'SET_USERS_LIST';
 let initialState = {
   usersList: []
 }
+//! теперь этот массив пользователей хранится на сервере
+// [
+//   {
+//     id: 1,
+//     followed: false,
+//     name: 'Natalia',
+//     img: '/img/cat.jpg',
+//     status: "I'm happy!",
+//     location: {
+//       city: 'Malme',
+//       country: 'Sweden'
+//     }
+//   },
+//   {
+//     id: 2,
+//     followed: true,
+//     name: 'Alisa',
+//     img: '/img/fox.jpg',
+//     status: "I'm pretty!",
+//     location: {
+//       city: 'Malme',
+//       country: 'Sweden'
+//     }
+//   },
+//   {
+//     id: 3,
+//     followed: false,
+//     name: 'Katia',
+//     img: '/img/bear.jpg',
+//     status: "I'm teddy bear!",
+//     location: {
+//       city: 'Malme',
+//       country: 'Sweden'
+//     }
+//   },
+//   {
+//     id: 4,
+//     followed: false,
+//     name: 'Dmytro',
+//     img: '/img/dog.jpg',
+//     status: "I'm Foon!",
+//     location: {
+//       city: 'Malme',
+//       country: 'Sweden'
+//     }
+//   }
+// ]
 
 const usersReducer = (state = initialState, action) => {
   // console.log("state: ", state);
