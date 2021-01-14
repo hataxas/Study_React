@@ -1,5 +1,5 @@
 {
-  "count": 6,
+  "totalCount": 6,
   "result": [
     { "id": 1, "text": "Hi eweryone!", "sentBy": "Natalia" },
     { "id": 2, "text": "How are you?", "sentBy": "Natalia" },

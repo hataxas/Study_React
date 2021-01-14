@@ -46,3 +46,21 @@
 }
 .city {
 }
+.pagination {
+  font-size: 20px;
+  text-align: center;
+}
+.pagination span {
+  display: inline-block;
+  cursor: pointer;
+  margin: 5px 5px;
+  padding: 2px;
+  width: 24px;
+  height: 24px;
+  text-align: center;
+  background-color: #696969;
+  color: #fff;
+}
+span.selectedPage {
+  color: #000;
+}

@@ -54,7 +54,117 @@
         "city": "Kiev",
         "country": "Ukraine"
       }
+    },
+    {
+      "id": 1,
+      "followed": false,
+      "name": "Natalia",
+      "img": "/img/cat.jpg",
+      "status": "I'm happy!",
+      "location": {
+        "city": "Malmo",
+        "country": "Sweden"
+      }
+    },
+    {
+      "id": 2,
+      "followed": true,
+      "name": "Alisa",
+      "img": "/img/fox.jpg",
+      "status": "I'm pretty!",
+      "location": {
+        "city": "Malmo",
+        "country": "Sweden"
+      }
+    },
+    {
+      "id": 3,
+      "followed": false,
+      "name": "Katia",
+      "img": "/img/bear.jpg",
+      "status": "I'm a teddy bear!",
+      "location": {
+        "city": "Malmo",
+        "country": "Sweden"
+      }
+    },
+    {
+      "id": 4,
+      "followed": false,
+      "name": "Dmytro",
+      "img": "/img/dog.jpg",
+      "status": "I'm Foon!",
+      "location": {
+        "city": "Malmo",
+        "country": "Sweden"
+      }
+    },
+    {
+      "id": 5,
+      "followed": false,
+      "name": "Anna",
+      "img": null,
+      "status": "I'm OK!",
+      "location": {
+        "city": "Kiev",
+        "country": "Ukraine"
+      }
+    },
+    {
+      "id": 1,
+      "followed": false,
+      "name": "Natalia",
+      "img": "/img/cat.jpg",
+      "status": "I'm happy!",
+      "location": {
+        "city": "Malmo",
+        "country": "Sweden"
+      }
+    },
+    {
+      "id": 2,
+      "followed": true,
+      "name": "Alisa",
+      "img": "/img/fox.jpg",
+      "status": "I'm pretty!",
+      "location": {
+        "city": "Malmo",
+        "country": "Sweden"
+      }
+    },
+    {
+      "id": 3,
+      "followed": false,
+      "name": "Katia",
+      "img": "/img/bear.jpg",
+      "status": "I'm a teddy bear!",
+      "location": {
+        "city": "Malmo",
+        "country": "Sweden"
+      }
+    },
+    {
+      "id": 4,
+      "followed": false,
+      "name": "Dmytro",
+      "img": "/img/dog.jpg",
+      "status": "I'm Foon!",
+      "location": {
+        "city": "Malmo",
+        "country": "Sweden"
+      }
+    },
+    {
+      "id": 5,
+      "followed": false,
+      "name": "Anna",
+      "img": null,
+      "status": "I'm OK!",
+      "location": {
+        "city": "Kiev",
+        "country": "Ukraine"
+      }
     }
   ],
-  "count": 5
+  "totalCount": 15
 }

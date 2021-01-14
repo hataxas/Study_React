@@ -1,57 +1,15 @@
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS_LIST = 'SET_USERS_LIST';
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 
 let initialState = {
-  usersList: []
-}
-//! теперь этот массив пользователей хранится на сервере
-// [
-//   {
-//     id: 1,
-//     followed: false,
-//     name: 'Natalia',
-//     img: '/img/cat.jpg',
-//     status: "I'm happy!",
-//     location: {
-//       city: 'Malme',
-//       country: 'Sweden'
-//     }
-//   },
-//   {
-//     id: 2,
-//     followed: true,
-//     name: 'Alisa',
-//     img: '/img/fox.jpg',
-//     status: "I'm pretty!",
-//     location: {
-//       city: 'Malme',
-//       country: 'Sweden'
-//     }
-//   },
-//   {
-//     id: 3,
-//     followed: false,
-//     name: 'Katia',
-//     img: '/img/bear.jpg',
-//     status: "I'm teddy bear!",
-//     location: {
-//       city: 'Malme',
-//       country: 'Sweden'
-//     }
-//   },
-//   {
-//     id: 4,
-//     followed: false,
-//     name: 'Dmytro',
-//     img: '/img/dog.jpg',
-//     status: "I'm Foon!",
-//     location: {
-//       city: 'Malme',
-//       country: 'Sweden'
-//     }
-//   }
-// ]
+  usersList: [],
+  pageSize: 5, //! задаем сколько пользователей будет отображаться на странице
+  totalUsersCount: 0, //! задаем общее колличество пользователей (т.к. неизвестно ставим пока 15)
+  currentPage: 1  //! текущая страница по умолчанию первая
+};
 
 const usersReducer = (state = initialState, action) => {
   // console.log("state: ", state);
@@ -82,7 +40,11 @@ const usersReducer = (state = initialState, action) => {
         })
       };
     case SET_USERS_LIST:
-      return { ...state, usersList: [...state.usersList, ...action.users] } //! добавляем в state новых пользователей которые пришли к нам в action (из базы данных)
+      return { ...state, usersList: action.users } //! добавляем в state новых пользователей которые пришли к нам в action (из базы данных)
+    case SET_CURRENT_PAGE:
+      return { ...state, currentPage: action.currentPage } //! меняем значение текущей страницы на то которое пришло к нам с action
+    case SET_TOTAL_USERS_COUNT:
+      return { ...state, totalUsersCount: action.count }
     default:
       return state;
   }
@@ -96,6 +58,12 @@ export const unfollowActionCreator = (userId) => {
 }
 export const setUsersListActionCreator = (users) => {
   return { type: SET_USERS_LIST, users }
+}
+export const setCurrentPageActionCreator = (currentPage) => {
+  return { type: SET_CURRENT_PAGE, currentPage }
+}
+export const setTotalUsersCountActionCreator = (totalUsersCount) => {
+  return { type: SET_TOTAL_USERS_COUNT, count: totalUsersCount }
 }
 
 export default usersReducer;
