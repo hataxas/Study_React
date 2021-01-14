@@ -50,8 +50,13 @@ import * as axios from 'axios'; //! это означает что мы импо
 //! Так выглядит классовая компонента
 //? создаем класс Users который наследует React.Component (то есть будет иметь доступ ко всем методам React)
 class Users extends React.Component{
-  constructor(props) {
-    super(props);
+  //? если конструирование объекта доверяется родительской компоненте super эту часть кода можно опустить так как это происходит в react по умолчанию
+  // constructor(props) {
+  //   super(props);
+  // }
+
+  //? запрос на сервер далаем в методе componentDidMount()
+  componentDidMount() {
     if (this.props.users.length === 0) {
       //! делаем get запрос на адресс https://social-network.samuraijs.com/api/1.0/users при помощи библиотеки axios (в качестве ответа ожидаем получить список пользователей, который хранится на сервере)
       axios.get("http://localhost:3000/api/users.json").then(response => {
