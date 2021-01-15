@@ -9,7 +9,10 @@ let reducers = combineReducers({
   usersPage: usersReducer
 });
 
-let store = createStore(reducers);
+let store = createStore(
+  reducers,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 //! сохраняем наш store глобально (чтбы мы могли его использовать для проверок)
 window.store = store;

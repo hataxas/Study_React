@@ -40,11 +40,11 @@ const usersReducer = (state = initialState, action) => {
         })
       };
     case SET_USERS_LIST:
-      return { ...state, usersList: action.users } //! добавляем в state новых пользователей которые пришли к нам в action (из базы данных)
+      return { ...state, usersList: action.users }; //! добавляем в state новых пользователей которые пришли к нам в action (из базы данных)
     case SET_CURRENT_PAGE:
-      return { ...state, currentPage: action.currentPage } //! меняем значение текущей страницы на то которое пришло к нам с action
+      return { ...state, currentPage: action.currentPage }; //! меняем значение текущей страницы на то которое пришло к нам с action
     case SET_TOTAL_USERS_COUNT:
-      return { ...state, totalUsersCount: action.count }
+      return { ...state, totalUsersCount: action.count };
     default:
       return state;
   }

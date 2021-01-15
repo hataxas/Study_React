@@ -60,7 +60,7 @@ class Users extends React.Component{
     if (this.props.users.length === 0) {
       //! делаем get запрос на адресс https://social-network.samuraijs.com/api/1.0/users при помощи библиотеки axios (в качестве ответа ожидаем получить список пользователей, который хранится на сервере) (задаем текущую страницу и колличество пользователей выводимое на странице)
       // axios.get(`http://localhost:3000/api/users.json?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-      axios.get(`https://8ed9d2ff895f.ngrok.io/api/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+      axios.get(`http://localhost:4567/api/users?page=${this.props.currentPage}&per_page=${this.props.pageSize}&count=21`)
         .then(response => {
           this.props.setUsersList(response.data.result);
           this.props.setTotalUsersCount(response.data.count);
@@ -70,7 +70,7 @@ class Users extends React.Component{
   //? напишем метод для переключения страниц (т.к. мы хотим сохранить контекст вызова, то пишем метод в виде стрелочной функции) (эта функция будет вызываться на onClick в render())
   onPageChanged = (pageNumber) => {
     this.props.setCurrentPage(pageNumber);
-    axios.get(`https://8ed9d2ff895f.ngrok.io/api/users?page=${pageNumber}&count=${this.props.pageSize}`)
+    axios.get(`http://localhost:4567/api/users?page=${pageNumber}&per_page=${this.props.pageSize}&count=21`)
         .then(response => {
           console.log(response.data.result);
           console.log(response.data.count);
@@ -93,7 +93,7 @@ class Users extends React.Component{
             <div className={style.pagination}>
               {/* перебираем массив pages и для каждой найденой страницы возвращаем ссылку с номером этой страницы (и нужной странице еще и присваиваем класс style.selectedPage) */}
               {pages.map(page => {
-                return <span className={this.props.currentPage === page && style.selectedPage} onClick = {() => {this.onPageChanged(page);}}>
+                return <span key={page} className={this.props.currentPage === page ? style.selectedPage : ''} onClick = {() => {this.onPageChanged(page);}}>
                     {page}
                   </span>
               })}
