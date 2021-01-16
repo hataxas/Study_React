@@ -3,12 +3,14 @@ const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS_LIST = 'SET_USERS_LIST';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
+const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
 let initialState = {
   usersList: [],
   pageSize: 5, //! задаем сколько пользователей будет отображаться на странице
   totalUsersCount: 0, //! задаем общее колличество пользователей (т.к. неизвестно ставим пока 15)
-  currentPage: 1  //! текущая страница по умолчанию первая
+  currentPage: 1,  //! текущая страница по умолчанию первая
+  isFetching: false, //! загрузка в процессе? (изначально ничего не подгружается)
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -45,25 +47,31 @@ const usersReducer = (state = initialState, action) => {
       return { ...state, currentPage: action.currentPage }; //! меняем значение текущей страницы на то которое пришло к нам с action
     case SET_TOTAL_USERS_COUNT:
       return { ...state, totalUsersCount: action.count };
+    case TOGGLE_IS_FETCHING:
+      return { ...state, isFetching: action.isFetching }; //! меняем значение isFetching на то которое пришло к нам с action
     default:
       return state;
   }
 }
 
-export const followActionCreator = (userId) => {
+//! Для того чтобы сократить код не будем в названии функций указвать ActionCreator
+export const follow = (userId) => {
   return { type: FOLLOW, userId }
 }
-export const unfollowActionCreator = (userId) => {
+export const unfollow = (userId) => {
   return { type: UNFOLLOW, userId }
 }
-export const setUsersListActionCreator = (users) => {
+export const setUsersList = (users) => {
   return { type: SET_USERS_LIST, users }
 }
-export const setCurrentPageActionCreator = (currentPage) => {
+export const setCurrentPage = (currentPage) => {
   return { type: SET_CURRENT_PAGE, currentPage }
 }
-export const setTotalUsersCountActionCreator = (totalUsersCount) => {
+export const setTotalUsersCount = (totalUsersCount) => {
   return { type: SET_TOTAL_USERS_COUNT, count: totalUsersCount }
+}
+export const toggleIsFetching = (isFetching) => {
+  return { type: TOGGLE_IS_FETCHING, isFetching }
 }
 
 export default usersReducer;
