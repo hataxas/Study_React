@@ -1,5 +1,6 @@
 import React from 'react';
 import style from './Users.module.css';
+import {NavLink} from 'react-router-dom';
 
 let Users = (props) => {
   //! вычисляем сколько страниц нам нужно нарисовать (делим общее колличество пользователей на колличество пользователей отображаемое на одной странице и округляем это значение вверх (чтобы если получим дробное число страниц рисовалось достаточно))
@@ -23,7 +24,9 @@ let Users = (props) => {
         props.users.map( (user) => (
             <div key={user.id} className={style.container}>
               <div className={style.avatar}>
-                <img className={style.img} src={user.img != null ? user.img : "/img/moon.jpg"} alt=""/>
+                <NavLink to={'/user_profile/' + user.id}>
+                  <img className={style.img} src={user.img != null ? user.img : "/img/moon.jpg"} alt=""/>
+                </NavLink>
                 <div>
                 {
                   user.followed

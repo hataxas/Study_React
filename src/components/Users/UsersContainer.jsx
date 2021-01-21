@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Users from './Users';
 import Preloader from '../CommonComponents/Preloader/Preloader';
-//import style from './Users.module.css';
 import * as axios from 'axios';
 import {
   follow,
@@ -21,16 +20,13 @@ class UsersContainer extends React.Component{
   //? запрос на сервер далаем в методе componentDidMount() (монтируем нашу компоненту на страницу)
   componentDidMount() {
     this.props.toggleIsFetching(true);
-    if (this.props.users.length === 0) {
-      //! делаем get запрос на адресс https://social-network.samuraijs.com/api/1.0/users при помощи библиотеки axios (в качестве ответа ожидаем получить список пользователей, который хранится на сервере) (задаем текущую страницу и колличество пользователей выводимое на странице)
-      // axios.get(`http://localhost:3000/api/users.json?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-      axios.get(`http://localhost:4567/api/users?page=${this.props.currentPage}&per_page=${this.props.pageSize}&count=21`)
-        .then(response => {
-          this.props.toggleIsFetching(false);
-          this.props.setUsersList(response.data.result);
-          this.props.setTotalUsersCount(response.data.count);
-        });
-    }
+    //console.log(this.props);
+    axios.get(`http://localhost:4567/api/users?page=${this.props.currentPage}&per_page=${this.props.pageSize}&count=21`)
+      .then(response => {
+        this.props.toggleIsFetching(false);
+        this.props.setUsersList(response.data.result);
+        this.props.setTotalUsersCount(response.data.count);
+      });
   }
   //? напишем метод для переключения страниц (т.к. мы хотим сохранить контекст вызова, то пишем метод в виде стрелочной функции) (эта функция будет вызываться на onClick в render())
   onPageChanged = (pageNumber) => {

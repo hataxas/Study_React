@@ -8,7 +8,7 @@ let initialState = {
     { id: 3, text: "It's my second post.", likesCount: 100 },
     { id: 4, text: "It's my next post.", likesCount: 80 }
   ],
-  newPostText: ''
+  newPostText: '',
 }
 
 const profileReducer = (state = initialState, action) => {

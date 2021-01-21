@@ -1,0 +1,30 @@
+.user_info {
+  padding: 1rem 0;
+}
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+}
+.description {
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+  padding: 0 1rem 0 0;
+}
+.contacts {
+  padding: 1rem 0;
+}
+.contacts_items {
+  font-size: 1.2rem;
+}
+.weight {
+  font-weight: 600;
+}
+.contacts_item {
+  margin: 0 0 0.5rem 0;
+}
+.job_info {
+}
+.specialty {
+  font-size: 1.2rem;
+}

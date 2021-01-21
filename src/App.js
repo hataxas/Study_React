@@ -8,6 +8,8 @@ import Music from './components/Music/Music';
 import News from './components/News/News';
 import Settings from './components/Settings/Settings';
 import UsersContainer from './components/Users/UsersContainer';
+//import UserProfile from './components/Users/UserProfile/UserProfile';
+import WithUrlDataUserProfileContainer from './components/Users/UserProfile/UserProfileContainer';
 
 function App(props) {
   return (
@@ -26,6 +28,7 @@ function App(props) {
           <Route path='/music' render={() => <Music />} />
           <Route path='/settings' render={() => <Settings />} />
           <Route path='/users' render={() => <UsersContainer />} />
+          <Route path='/user_profile/:userId' render={() => <WithUrlDataUserProfileContainer />} />
         </div>
       </div>
     </BrowserRouter>

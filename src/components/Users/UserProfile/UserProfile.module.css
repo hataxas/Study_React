@@ -1,0 +1,11 @@
+.user_name {
+  font-size: 2rem;
+  padding: 0 0 1rem 1rem;
+  font-weight: 600;
+}
+.user_profile {
+  padding: 1rem 0;
+}
+.profile_info {
+  padding: 0 0 0 1rem;
+}
