@@ -36,7 +36,7 @@ body {
   width: 100%;
   font-size: 100%;
   line-height: 1;
-  font-size: 14px;
+  font-size: 10px;
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -93,7 +93,7 @@ body {
   grid-template-areas:
     "header header"
     "nav content";
-  grid-template-rows: 4.5rem 1fr;
+  grid-template-rows: 6rem 1fr;
   grid-template-columns: 2fr 10fr;
 }
 

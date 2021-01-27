@@ -21,39 +21,3 @@ const UserProfile = (props) => {
 }
 
 export default UserProfile;
-
-// http://localhost:4567/api/profile/1   (1 - это id человека на чей профиль мы зашли)
-// {
-//   profile: [
-//     {
-//       id: 1,
-//       name: 'Panda Pandovich',
-//       img: null,
-//       description: 'I am cool panda... Bla bla bla...',
-//       contacts: {
-//         facebook: null,
-//         twitter: null,
-//         instagram: null,
-//         whatsApp: null,
-//         email: 'panda@gmail.com'
-//       },
-//       lookingForAJob: true,
-//       lookingForAJobDescription: 'bla bla bla'
-//     },
-//     {
-//       id: 2,
-//       name: 'Foon Lunich',
-//       img: null,
-//       description: 'I am Foon... Bla bla bla...',
-//       contacts: {
-//         facebook: null,
-//         twitter: null,
-//         instagram: null,
-//         whatsApp: null,
-//         email: 'foon@gmail.com'
-//       },
-//       lookingForAJob: false,
-//       lookingForAJobDescription: nul
-//     },
-//   ]
-// }

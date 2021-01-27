@@ -1,0 +1,26 @@
+.login {
+  padding: 1rem;
+}
+.title {
+  font-size: 2rem;
+}
+.field {
+  font-size: 1.5rem;
+  padding: 0.2rem 0.5rem;
+  margin: 1rem 0 0 0;
+}
+.checkbox {
+  margin: 1rem 0;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.lable {
+  font-size: 1.5rem;
+  padding: 0.5rem;
+}
+.button {
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  color: #fff;
+  background-color: #333333;
+}
