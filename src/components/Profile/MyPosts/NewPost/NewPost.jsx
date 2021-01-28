@@ -1,30 +1,32 @@
 import style from './NewPost.module.css';
 import React from 'react';
-
+import { Field, reduxForm } from 'redux-form'
 
 const NewPost = (props) => {
-
-  let newPostElement = React.createRef();
-
-  let addPost = () => {
-    //! Для того чтобы компоненты оставались независимыми, нам нужно сделать так чтобы они ничего не знали про store и в часности про dispatch. Добъемся этого при помощи контейнерной компоненты, которая будет принимать всю эту информацию. Создадим файл NewPostContainer и туда будем передавать информацию из внешнего мира, а компонента NewPost останется презентационной
-    //props.dispatch(addPostActionCreator());
-    props.addPost();
+  let addPost = (values) => {
+    props.addPost(values.newPostText);
   }
-  let updateNewPostText = () => {
-    let text = newPostElement.current.value;
-    //props.dispatch(updateNewPostTextActionCreator(text));
-    props.updateNewPostText(text);
-  }
-
   return (
-    <div className={style.newPost}>
-      <textarea onChange = {updateNewPostText} value={props.newPostText} ref={newPostElement} className={style.newPost_textarea} placeholder='New Post' />
-      <div className={style.newPost_button}>
-        <button onClick = {addPost}>Add Post</button>
-      </div>
-    </div>
+    <NewPostReduxForm onSubmit={addPost}/>
   );
 }
+
+let NewPostForm = props => {
+  return (
+    <form onSubmit={props.handleSubmit} className={style.newPost}>
+      <Field name="newPostText" component="textarea" className={style.newPost_textarea} placeholder="New Post" />
+      <div className={style.newPost_button}>
+        <button type="submit" >Add Post</button>
+      </div>
+    </form>
+  )
+}
+
+let NewPostReduxForm = reduxForm({
+  // a unique name for the form
+  form: 'profileNewPostForm'
+})(NewPostForm)
+
+
 
 export default NewPost;
