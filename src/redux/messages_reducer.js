@@ -1,5 +1,4 @@
 const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
 
 let initialState = {
   messagesData: [
@@ -10,7 +9,6 @@ let initialState = {
     { id: 5, text: 'My name is Katia.', sendBy: 'Katia' },
     { id: 6, text: 'My name is Dima.', sendBy: 'Dmytro' }
   ],
-  newMessageText: '',
   usersData: [
     {
       id: 1,
@@ -41,29 +39,20 @@ const messagesReducer = (state = initialState, action) => {
     case ADD_MESSAGE:
       let NewMessage = {
         id: 7,
-        text: state.newMessageText,
+        text: action.newMessageText,
         sendBy: 'Panda'
       };
       return {
         ...state,
-        newMessageText: '',
         messagesData: [...state.messagesData, NewMessage], //! вместо push(NewMessage) мы просто добавляем NewMessage в наш массив через запятую
-      };
-    case UPDATE_NEW_MESSAGE_TEXT:
-      return {
-        ...state,
-        newMessageText: action.newText //! вносим изменения непосредственно во время копирования объекта
       };
     default:
       return state;
   }
 }
 
-export const addMessageActionCreator = () => {
-  return { type: ADD_MESSAGE }
-}
-export const updateNewMessageTextActionCreator = (text) => {
-  return { type: UPDATE_NEW_MESSAGE_TEXT, newText: text }
+export const addMessageActionCreator = (newMessageText) => {
+  return { type: ADD_MESSAGE, newMessageText }
 }
 
 export default messagesReducer;

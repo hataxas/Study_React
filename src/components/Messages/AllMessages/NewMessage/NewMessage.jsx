@@ -1,33 +1,31 @@
 import style from './NewMessage.module.css';
 import React from 'react';
+import { Field, reduxForm } from 'redux-form'
 
 const NewMessage = (props) => {
-  let newMessageElement = React.createRef();
-
-  let addMessage = () => {
-    props.addMessage();
+  let addMessage = (values) => {
+    props.addMessage(values.newMessageText);
   }
-
-  let updateNewMessageText = () => {
-    let text = newMessageElement.current.value;
-    props.updateNewMessageText(text);
-  }
-
   return (
-    <div className={style.newMessage}>
-      <textarea
-        ref={newMessageElement}
-        value={props.newMessageText}
-        onChange={updateNewMessageText}
-        className={style.newMessage_textarea}
-        placeholder='New Message'
-        >
-      </textarea>
-      <div className={style.newMessage_button}>
-        <button onClick = {addMessage}>Add Message</button>
-      </div>
-    </div>
+    <NewMessageRedaxForm onSubmit={addMessage} />
   );
 }
+
+let NewMessageForm = props => {
+  const { handleSubmit } = props
+  return (
+    <form onSubmit={handleSubmit} className={style.newMessage}>
+      <Field name="newMessageText" component="textarea" type="text" placeholder="New Message" className={style.newMessage_textarea} />
+      <div className={style.newMessage_button}>
+        <button type="submit">Add Message</button>
+      </div>
+    </form>
+  )
+}
+
+let NewMessageRedaxForm = reduxForm({
+  // a unique name for the form
+  form: 'messagesNewMessageForm'
+})(NewMessageForm)
 
 export default NewMessage;
