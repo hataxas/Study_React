@@ -15,9 +15,9 @@ let Users = (props) => {
       <div className={style.pagination}>
         {/* перебираем массив pages и для каждой найденой страницы возвращаем ссылку с номером этой страницы (и нужной странице еще и присваиваем класс style.selectedPage) */}
         {pages.map(page => {
-          return <span key={page} className={props.currentPage === page ? style.selectedPage : ''} onClick = {() => {props.onPageChanged(page)}}>
+          return <button key={page} className={props.currentPage === page ? style.selectedPage : ''} disabled={props.isPageChangeInProgress} onClick = {() => {props.onPageChanged(page)}}>
               {page}
-            </span>
+            </button>
         })}
       </div>
       {

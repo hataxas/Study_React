@@ -1,9 +1,12 @@
+import { getUsers } from '../api/api';
+
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS_LIST = 'SET_USERS_LIST';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
+const TOGGLE_IS_CURRENT_PAGE_PROGRESS = 'TOGGLE_IS_CURRENT_PAGE_PROGRESS';
 
 let initialState = {
   usersList: [],
@@ -11,6 +14,7 @@ let initialState = {
   totalUsersCount: 0, //! задаем общее колличество пользователей (т.к. неизвестно ставим пока 15)
   currentPage: 1,  //! текущая страница по умолчанию первая
   isFetching: false, //! загрузка в процессе? (изначально ничего не подгружается)
+  isPageChangeInProgress: false, //! переключение страницы в процессе?
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -49,6 +53,8 @@ const usersReducer = (state = initialState, action) => {
       return { ...state, totalUsersCount: action.count };
     case TOGGLE_IS_FETCHING:
       return { ...state, isFetching: action.isFetching }; //! меняем значение isFetching на то которое пришло к нам с action
+    case TOGGLE_IS_CURRENT_PAGE_PROGRESS:
+      return { ...state, isPageChangeInProgress: action.isPageChangeInProgress }
     default:
       return state;
   }
@@ -72,6 +78,38 @@ export const setTotalUsersCount = (totalUsersCount) => {
 }
 export const toggleIsFetching = (isFetching) => {
   return { type: TOGGLE_IS_FETCHING, isFetching }
+}
+export const toggleIsCurrentPageProgress = (isPageChangeInProgress) => {
+  return { type: TOGGLE_IS_CURRENT_PAGE_PROGRESS, isPageChangeInProgress }
+}
+
+//! Создаем thunk и оборачиваем ее в thunkCreator (это делается для того чтобы передать в нашу функцию то чего ей не хватает для работы, в нашем слачае это currentPage и pageSize)
+export const getUsersThunkCreator = (currentPage, pageSize) => {
+  //! это наша thunk
+  return (dispatch) => {
+    dispatch(toggleIsFetching(true));
+
+    getUsers(currentPage, pageSize).then(data => {
+      dispatch(toggleIsFetching(false));
+      dispatch(setUsersList(data.result));
+      dispatch(setTotalUsersCount(data.count));
+    });
+  }
+}
+
+export const pageChangedThunkCreator = (pageNumber, pageSize) => {
+  //! это наша thunk
+  return (dispatch) => {
+    dispatch(toggleIsFetching(true));
+    dispatch(toggleIsCurrentPageProgress(true));
+    dispatch(setCurrentPage(pageNumber));
+
+    getUsers(pageNumber, pageSize).then(data => {
+      dispatch(toggleIsFetching(false));
+      dispatch(toggleIsCurrentPageProgress(false));
+      dispatch(setUsersList(data.result));
+    });
+  }
 }
 
 export default usersReducer;
