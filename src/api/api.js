@@ -22,3 +22,8 @@ export const getUsers = (currentPage = 1, pageSize = 5) => {
   return axios.get(`http://localhost:4567/api/users?page=${currentPage}&per_page=${pageSize}&count=21`)
     .then(response => { return response.data });
 }
+
+export const getUserById = (userId) => {
+  return axios.get(`http://localhost:4567/api/users/` + userId)
+    .then(response => { return response.data });
+}

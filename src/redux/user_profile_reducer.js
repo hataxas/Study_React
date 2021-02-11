@@ -1,3 +1,5 @@
+import { getUserById } from '../api/api';
+
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
 let initialState = {
@@ -5,9 +7,6 @@ let initialState = {
 };
 
 const userProfileReducer = (state = initialState, action) => {
-  //console.log("state: ", state);
-  //console.log("action: ", action);
-  //! альтернативная запись (вместо использования if и else if мы можем использовать switch)
   switch (action.type) {
     case SET_USER_PROFILE:
       return { ...state, userProfile: action.userProfile };
@@ -18,8 +17,17 @@ const userProfileReducer = (state = initialState, action) => {
 
 //! Для того чтобы сократить код не будем в названии функций указвать ActionCreator
 
-export const setUserProfile = (userProfile) => {
+const setUserProfile = (userProfile) => {
   return { type: SET_USER_PROFILE, userProfile }
+}
+//! создаем thunk Creator
+export const getUserProfile = (userId) => {
+  return (dispatch) => {
+    getUserById(userId).then(data => {
+      //! мы диспатчим action, который приведет к изменению в userProfileReducer
+      dispatch(setUserProfile(data.result));
+    });
+  }
 }
 
 export default userProfileReducer;

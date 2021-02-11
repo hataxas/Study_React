@@ -1,21 +1,21 @@
 import UserProfile from './UserProfile';
 import React from 'react';
-import * as axios from 'axios';
 import { connect } from 'react-redux';
-import {setUserProfile} from '../../../redux/user_profile_reducer';
+import {getUserProfile} from '../../../redux/user_profile_reducer';
 import { withRouter } from 'react-router-dom';
 
 class UserProfileContainer extends React.Component {
   componentDidMount() {
-    console.log(this.props);
-    //! Смотрим путь в консоли
+    // console.log(this.props);
+    // //! Смотрим путь в консоли
     let userId = this.props.match.params.userId;
     console.log(userId);
-    axios.get(`http://localhost:4567/api/users/` + userId)
-      .then(response => {
-        this.props.setUserProfile(response.data.result);
-        console.log(response.data.result);
-      });
+    this.props.getUserProfile(userId);
+    //! заменили это все thunk функцией
+    // getUserById(userId).then(data => {
+    //     this.props.setUserProfile(data.result);
+    //     console.log(data.result);
+    //   });
   }
 
   render() {
@@ -32,4 +32,4 @@ let mapStateToProps = (state) => ({
 
 let WithUrlDataUserProfileContainer = withRouter(UserProfileContainer);
 
-export default connect(mapStateToProps, {setUserProfile}) (WithUrlDataUserProfileContainer);
+export default connect(mapStateToProps, {getUserProfile}) (WithUrlDataUserProfileContainer);
