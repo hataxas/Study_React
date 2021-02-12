@@ -27,3 +27,9 @@ export const getUserById = (userId) => {
   return axios.get(`http://localhost:4567/api/users/` + userId)
     .then(response => { return response.data });
 }
+
+//! делаем запрос на сервер залогинен пользователь или нет (нужно разобраться как делать этот запрос)
+export const getAuthUser = () => {
+  return axios.get(`http://localhost:4567/api/users/auth/me`, { withCredentials: true })
+    .then(response => { return response.data });
+}

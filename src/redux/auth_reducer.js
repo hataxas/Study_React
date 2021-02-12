@@ -1,3 +1,5 @@
+import { getAuthUser } from '../api/api';
+
 const SET_USER_DATA = 'SET_USER_DATA';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
@@ -5,7 +7,7 @@ let initialState = {
   userId: null,
   email: null,
   password: null,
-  isAuth: false, //! залогинены?
+  isAuth: false, //! залогинены? на данный момент нет
   isFetching: false //! загрузка в процессе? (изначально ничего не подгружается)
 };
 
@@ -34,6 +36,16 @@ export const setAuthUserData = (userId, email, password) => {
 
 export const toggleIsFetching = (isFetching) => {
   return { type: TOGGLE_IS_FETCHING, isFetching }
+}
+
+export const getAuthUserData = () => {
+  return (dispatch) => {
+    getAuthUser.then(data => {
+      if (data.status === "success") {
+        dispatch(setAuthUserData(data.data));
+      }
+    });
+  }
 }
 
 export default authReducer;

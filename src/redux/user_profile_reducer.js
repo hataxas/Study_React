@@ -20,7 +20,7 @@ const userProfileReducer = (state = initialState, action) => {
 const setUserProfile = (userProfile) => {
   return { type: SET_USER_PROFILE, userProfile }
 }
-//! создаем thunk Creator
+//! создаем thunk Creator который будет передавать userId в нашу thunk функцию, которая будет делать запрос на сервер и диспатчить action описаные в ActionCreator setUserProfile с информацией полученной от сервера
 export const getUserProfile = (userId) => {
   return (dispatch) => {
     getUserById(userId).then(data => {

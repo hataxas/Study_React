@@ -10,6 +10,7 @@ let Users = (props) => {
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
   }
+
   return <div className={style.users}>
       {/* Рисуем нашу пагинацию */}
       <div className={style.pagination}>

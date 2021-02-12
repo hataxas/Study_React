@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Users from './Users';
 import Preloader from '../CommonComponents/Preloader/Preloader';
+import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 //import * as axios from 'axios';
 import {
   follow,
@@ -72,9 +73,12 @@ let mapStateToProps = (state) => {
     totalUsersCount: state.usersPage.totalUsersCount,
     currentPage: state.usersPage.currentPage,
     isFetching: state.usersPage.isFetching,
-    isPageChangeInProgress: state.usersPage.isPageChangeInProgress
+    isPageChangeInProgress: state.usersPage.isPageChangeInProgress,
+    //! получаем доступ к информации о том залогинен ли текущий пользователь и передаем эту информацию в UsersContainer (перенесли это в наш HOC)
+    //isAuth: state.auth.isAuth
   }
 }
+
 //! мы можем значительно сократить код, если будем записывать mapDispatchToProps сразу в виде объекта и позволяя connect за кадром делать колбэк вызовы
 // let mapDispatchToProps = (dispatch) => {
 //   return {
@@ -98,6 +102,10 @@ let mapStateToProps = (state) => {
 //     },
 //   }
 // }
+
+//! Передаем в нашу HOC withAuthRedirect (withAuthRedirect.js) UsersContainer (ту компоненту к которой мы хотим применить ту логику, которая описана в нашей HOC). Для того чтобы редирект работал AuthRedirectComponent нужно передать вместо UsersContainer в connect
+let AuthRedirectComponent = withAuthRedirect(UsersContainer);
+
 
 export default connect(mapStateToProps,
   {follow, unfollow, getUsersThunkCreator, pageChangedThunkCreator})(UsersContainer);
