@@ -3,13 +3,15 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import Input from '../CommonComponents/FormsControls/InputControls';
 import { required, maxLength30 } from '../../utils/validators/validators';
+import { connect } from 'react-redux';
+import {login } from '../../redux/auth_reducer';
 
 const LoginForm = (props) => {
   return (
     <form onSubmit={props.handleSubmit}>
       <div>
         {/* Заменяем наши input на Field */}
-        <Field name={"login"} type={"text"} placeholder={"Login"} component={Input} className={style.field} validate={[required, maxLength30]} />
+        <Field name={"email"} type={"text"} placeholder={"Email"} component={Input} className={style.field} validate={[required, maxLength30]} />
       </div>
       <div>
         <Field name={"password"} type={"password"} placeholder={"Password"} component={Input} className={style.field} validate={[required, maxLength30]} />
@@ -34,7 +36,7 @@ const LoginReduxForm = reduxForm({
 const Login = (props) => {
   const onSubmit = (formData) => {
     //! мы собрали данные из формы и теперь должны отправить их на сервер
-    console.log(formData);
+    props.login(formData.email, formData.password);
   }
   return (
     <div className={style.login}>
@@ -44,4 +46,4 @@ const Login = (props) => {
   )
 }
 
-export default Login;
+export default connect (null, {login}) (Login);

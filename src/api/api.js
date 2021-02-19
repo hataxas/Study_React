@@ -29,7 +29,12 @@ export const getUserById = (userId) => {
 }
 
 //! делаем запрос на сервер залогинен пользователь или нет (нужно разобраться как делать этот запрос)
-export const getAuthUser = () => {
-  return axios.get(`http://localhost:4567/api/users/auth/me`, { withCredentials: true })
-    .then(response => { return response.data });
+export const authAPI = {
+  login(email, password) {
+    return axios.post(`http://localhost:4567/api/session`, { session: { email, password } });
+  },
+  // logout() {
+  //   return axios.delete(`http://localhost:4567/api/session`)
+  //     .then(response => { return response.data });
+  // },
 }

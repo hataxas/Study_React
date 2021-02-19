@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Users from './Users';
 import Preloader from '../CommonComponents/Preloader/Preloader';
 import {withAuthRedirect} from '../../hoc/withAuthRedirect';
+import { compose } from 'redux';
 //import * as axios from 'axios';
 import {
   follow,
@@ -103,9 +104,15 @@ let mapStateToProps = (state) => {
 //   }
 // }
 
-//! Передаем в нашу HOC withAuthRedirect (withAuthRedirect.js) UsersContainer (ту компоненту к которой мы хотим применить ту логику, которая описана в нашей HOC). Для того чтобы редирект работал AuthRedirectComponent нужно передать вместо UsersContainer в connect
-let AuthRedirectComponent = withAuthRedirect(UsersContainer);
+// //! Передаем в нашу HOC withAuthRedirect (withAuthRedirect.js) UsersContainer (ту компоненту к которой мы хотим применить ту логику, которая описана в нашей HOC). Для того чтобы редирект работал AuthRedirectComponent нужно передать вместо UsersContainer в connect
+// let AuthRedirectComponent = withAuthRedirect(UsersContainer);
 
 
-export default connect(mapStateToProps,
-  {follow, unfollow, getUsersThunkCreator, pageChangedThunkCreator})(UsersContainer);
+// export default connect(mapStateToProps,
+//   {follow, unfollow, getUsersThunkCreator, pageChangedThunkCreator})(UsersContainer);
+
+//! функция compose позволяет нам объединить все конте йнерные компоненты чтобы четко прослеживалась вложенность. В нашем случае мы оборачиваем компоненту UsersContainer в withAuthRedirect, затем в connect (который отрисовывает нашу компоненту)
+export default compose (
+  connect(mapStateToProps, {follow, unfollow, getUsersThunkCreator, pageChangedThunkCreator}),
+  //withAuthRedirect //! нужно разкоммитеть если хотим чтобы работал редирект
+) (UsersContainer);

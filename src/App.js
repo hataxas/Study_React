@@ -8,8 +8,8 @@ import News from './components/News/News';
 import Settings from './components/Settings/Settings';
 import UsersContainer from './components/Users/UsersContainer';
 import WithUrlDataUserProfileContainer from './components/Users/UserProfile/UserProfileContainer';
-//import HeaderContainer from './components/Header/HeaderContainer';
-import Header from './components/Header/Header';
+import HeaderContainer from './components/Header/HeaderContainer';
+// import Header from './components/Header/Header';
 import Login from './components/Login/Login';
 
 function App(props) {
@@ -17,8 +17,8 @@ function App(props) {
     <BrowserRouter>
       <div className="app-wrapper">
         {/* //! эти две части не меняются (они на любой странице выглядят одинаково) */}
-        {/* <HeaderContainer /> */}
-        <Header />
+        <HeaderContainer />
+        {/* <Header /> */}
         <Navbar />
         {/* //! эта часть может содержать любую из наших страниц Profile, Massages, News, Music или Settings */}
         <div className="app-wrapper-content">
