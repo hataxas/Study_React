@@ -5,6 +5,7 @@ import Input from '../CommonComponents/FormsControls/InputControls';
 import { required, maxLength30 } from '../../utils/validators/validators';
 import { connect } from 'react-redux';
 import {login } from '../../redux/auth_reducer';
+import { Redirect } from 'react-router-dom';
 
 const LoginForm = (props) => {
   return (
@@ -38,6 +39,10 @@ const Login = (props) => {
     //! мы собрали данные из формы и теперь должны отправить их на сервер
     props.login(formData.email, formData.password);
   }
+
+  if (props.isAuth) {
+    return <Redirect to={'/profile'} />
+  }
   return (
     <div className={style.login}>
       <h1 className={style.title}>Login</h1>
@@ -46,4 +51,10 @@ const Login = (props) => {
   )
 }
 
-export default connect (null, {login}) (Login);
+const mapStateToProps = (state) => {
+  return {
+    isAuth: state.auth.isAuth
+  }
+}
+
+export default connect (mapStateToProps, {login}) (Login);

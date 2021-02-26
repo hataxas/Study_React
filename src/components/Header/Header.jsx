@@ -8,9 +8,10 @@ const Header = (props) => {
       <img src='https://penji.co/wp-content/uploads/2019/08/wwf-1024x536.jpeg' alt='' />
       <div className={style.loginBlock}>
         {
-          props.isAuth ? <div className={style.user_name}>{props.name}</div> :
+          props.isAuth
+          ? <div className={style.user_name}>{props.name} <button className={style.logout} onClick={props.logout}>Log out</button> </div>:
           <NavLink className={style.link} to={'/login'}>
-            Login
+            Log in
           </NavLink>
         }
       </div>

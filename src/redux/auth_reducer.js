@@ -1,3 +1,4 @@
+import { stopSubmit } from 'redux-form';
 import { authAPI } from '../api/api';
 
 const SET_USER_DATA = 'SET_USER_DATA';
@@ -21,7 +22,6 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         ...action.data, //! {userId: 1, email: "kling.brittany@gmail.com", name: "Brittany Kling", isAuth: true}
-        isAuth: true
       };
     case TOGGLE_IS_FETCHING:
       return { ...state, isFetching: action.isFetching }; //! меняем значение isFetching на то которое пришло к нам с action
@@ -60,6 +60,10 @@ export const login = (email, password) => {
         if (response.data.status === "success") {
           let data = response.data.result;
           dispatch(setAuthUserData(data.user.id, data.user.contacts.email, data.user.name, true));
+        } else {
+          //! если возникли проблемы во время залогинивания, мы останавливаем процесс используя функцию stopSubmit (в этой функции мы прописываем имя формы и возможные причины проблемы)
+          let action = stopSubmit('login', { email: 'Email is wrong', password: 'Password is wrong' });
+          dispatch(action);
         }
       });
   }

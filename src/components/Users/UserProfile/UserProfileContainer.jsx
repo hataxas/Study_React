@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import {getUserProfile} from '../../../redux/user_profile_reducer';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
-//import {withAuthRedirect} from '../../../hoc/withAuthRedirect';
+import {withAuthRedirect} from '../../../hoc/withAuthRedirect';
 
 class UserProfileContainer extends React.Component {
   componentDidMount() {
@@ -40,5 +40,5 @@ let mapStateToProps = (state) => ({
 export default compose (
   connect(mapStateToProps, {getUserProfile}), //! стандартный метод react-redux (передает в компоненту информацию из стора и занимается перерисовкой компоненты если в state произошли изменения)
   withRouter,  //! стандартный метод react-router-dom (позволяет считывать URL)
-  //withAuthRedirect //! функция HOC написанная нами (перенаправляет на страницу логина если пользователь не залогинен)
+  withAuthRedirect //! функция HOC написанная нами (перенаправляет на страницу логина если пользователь не залогинен)
 )(UserProfileContainer);

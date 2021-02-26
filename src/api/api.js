@@ -33,8 +33,7 @@ export const authAPI = {
   login(email, password) {
     return axios.post(`http://localhost:4567/api/session`, { session: { email, password } });
   },
-  // logout() {
-  //   return axios.delete(`http://localhost:4567/api/session`)
-  //     .then(response => { return response.data });
-  // },
+  logout() {
+    return axios.delete(`http://localhost:4567/api/session`);
+  },
 }
