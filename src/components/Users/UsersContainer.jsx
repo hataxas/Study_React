@@ -11,6 +11,7 @@ import {
   getUsersThunkCreator,
   pageChangedThunkCreator,
 } from '../../redux/users_reducer';
+import { getUsersList, getPageSize, getTotalUsersCount, getCurrentPage, getIsFetching, getIsPageChangeInProgress } from '../../redux/users_selectors';
 //import {getUsers} from '../../api/api';
 
 
@@ -67,14 +68,27 @@ class UsersContainer extends React.Component{
 }
 
 //! компонента отвечающая за передачу store нашей UsersContainer
+// let mapStateToProps = (state) => {
+//   return {
+//     users: state.usersPage.usersList,
+//     pageSize: state.usersPage.pageSize,
+//     totalUsersCount: state.usersPage.totalUsersCount,
+//     currentPage: state.usersPage.currentPage,
+//     isFetching: state.usersPage.isFetching,
+//     isPageChangeInProgress: state.usersPage.isPageChangeInProgress,
+//     //! получаем доступ к информации о том залогинен ли текущий пользователь и передаем эту информацию в UsersContainer (перенесли это в наш HOC)
+//     //isAuth: state.auth.isAuth
+//   }
+// }
+
 let mapStateToProps = (state) => {
   return {
-    users: state.usersPage.usersList,
-    pageSize: state.usersPage.pageSize,
-    totalUsersCount: state.usersPage.totalUsersCount,
-    currentPage: state.usersPage.currentPage,
-    isFetching: state.usersPage.isFetching,
-    isPageChangeInProgress: state.usersPage.isPageChangeInProgress,
+    users: getUsersList(state),
+    pageSize: getPageSize(state),
+    totalUsersCount: getTotalUsersCount(state),
+    currentPage: getCurrentPage(state),
+    isFetching: getIsFetching(state),
+    isPageChangeInProgress: getIsPageChangeInProgress(state),
     //! получаем доступ к информации о том залогинен ли текущий пользователь и передаем эту информацию в UsersContainer (перенесли это в наш HOC)
     //isAuth: state.auth.isAuth
   }
@@ -114,5 +128,5 @@ let mapStateToProps = (state) => {
 //! функция compose позволяет нам объединить все конте йнерные компоненты чтобы четко прослеживалась вложенность. В нашем случае мы оборачиваем компоненту UsersContainer в withAuthRedirect, затем в connect (который отрисовывает нашу компоненту)
 export default compose (
   connect(mapStateToProps, {follow, unfollow, getUsersThunkCreator, pageChangedThunkCreator}),
-  //withAuthRedirect //! нужно разкоммитеть если хотим чтобы работал редирект
+  withAuthRedirect //! нужно разкоммитеть если хотим чтобы работал редирект
 ) (UsersContainer);
