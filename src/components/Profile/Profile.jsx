@@ -3,7 +3,7 @@ import MyPostsContainer from './MyPosts/MyPostsContainer';
 import style from './Profile.module.css';
 import AvatarImg from './User/AvatarImg/AvatarImg';
 import Description from './User/Description/Description';
-import Status from './User/Status/Status';
+import StatusWithHooks from './User/Status/StatusWithHooks';
 
 const Profile = (props) => {
   return (
@@ -13,7 +13,7 @@ const Profile = (props) => {
           <AvatarImg />
           <Description />
         </div>
-        <Status status={'Hello everyone!'} />
+        <StatusWithHooks status={'Hello everyone!'} />
         <MyPostsContainer />
       </div>
   );
