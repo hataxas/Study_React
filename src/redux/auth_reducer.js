@@ -54,18 +54,18 @@ export const toggleIsFetching = (isFetching) => {
 //! создаем thunk для того чтобы делать запросы на сервер
 
 export const login = (email, password) => {
-  return (dispatch) => {
-    authAPI.login(email, password)
-      .then(response => {
-        if (response.data.status === "success") {
-          let data = response.data.result;
-          dispatch(setAuthUserData(data.user.id, data.user.contacts.email, data.user.name, true));
-        } else {
-          //! если возникли проблемы во время залогинивания, мы останавливаем процесс используя функцию stopSubmit (в этой функции мы прописываем имя формы и возможные причины проблемы)
-          let action = stopSubmit('login', { email: 'Email is wrong', password: 'Password is wrong' });
-          dispatch(action);
-        }
-      });
+  //! указываем что имеем дело с асинхронной функцией async и вместо then можем использовать await и избавиться от лишней вложенности
+  return async (dispatch) => {
+    //! тот респонс который приходил к нам в then, теперь приходит как результат ожидания await
+    let response = await authAPI.login(email, password);
+    if (response.data.status === "success") {
+      let data = response.data.result;
+      dispatch(setAuthUserData(data.user.id, data.user.contacts.email, data.user.name, true));
+    } else {
+      //! если возникли проблемы во время залогинивания, мы останавливаем процесс используя функцию stopSubmit (в этой функции мы прописываем имя формы и возможные причины проблемы)
+      let action = stopSubmit('login', { email: 'Email is wrong', password: 'Password is wrong' });
+      dispatch(action);
+    }
   }
 }
 

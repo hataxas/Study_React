@@ -20,7 +20,6 @@ import * as axios from 'axios';
 //! если мы не получаем нужную информацию из пропсов то нам нужно передать ее в качестве параметров. Мы можем задать какими эти параметры будут по умолчанию, если не прийдет других значений.
 export const getUsers = (currentPage = 1, pageSize = 5) => {
   return axios.get(`http://localhost:4567/api/users?page=${currentPage}&per_page=${pageSize}&count=21`)
-    .then(response => { return response.data });
 }
 
 export const getUserById = (userId) => {

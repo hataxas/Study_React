@@ -1,5 +1,5 @@
-const ADD_POST = 'ADD-POST';
-const DELETE_POST = 'DELETE_POST';
+const ADD_POST = 'profile/ADD_POST';
+const DELETE_POST = 'profile/DELETE_POST';
 
 let initialState = {
   postsData: [

@@ -1,28 +1,18 @@
 import React from 'react';
 import style from './Users.module.css';
 import {NavLink} from 'react-router-dom';
+import Paginator from '../CommonComponents/Paginator/Paginator';
 
-let Users = (props) => {
-  //! вычисляем сколько страниц нам нужно нарисовать (делим общее колличество пользователей на колличество пользователей отображаемое на одной странице и округляем это значение вверх (чтобы если получим дробное число страниц рисовалось достаточно))
-  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-  //! создаем пустой массив страниц (номеров) и затем при помощи цикла заполняем его значениями
-  let pages = [];
-  for (let i = 1; i <= pagesCount; i++) {
-    pages.push(i);
-  }
-
+let Users = ({totalUsersCount, pageSize, currentPage, isPageChangeInProgress, onPageChanged, users, unfollow, follow}) => {
   return <div className={style.users}>
-      {/* Рисуем нашу пагинацию */}
-      <div className={style.pagination}>
-        {/* перебираем массив pages и для каждой найденой страницы возвращаем ссылку с номером этой страницы (и нужной странице еще и присваиваем класс style.selectedPage) */}
-        {pages.map(page => {
-          return <button key={page} className={props.currentPage === page ? style.selectedPage : ''} disabled={props.isPageChangeInProgress} onClick = {() => {props.onPageChanged(page)}}>
-              {page}
-            </button>
-        })}
-      </div>
+      <Paginator totalUsersCount = {totalUsersCount}
+        pageSize = {pageSize}
+        currentPage = {currentPage}
+        isPageChangeInProgress = {isPageChangeInProgress}
+        onPageChanged = {onPageChanged}
+      />
       {
-        props.users.map( (user) => (
+        users.map( (user) => (
             <div key={user.id} className={style.container}>
               <div className={style.avatar}>
                 <NavLink to={'/user_profile/' + user.id}>
@@ -31,8 +21,8 @@ let Users = (props) => {
                 <div>
                 {
                   user.followed
-                  ? <button className={style.button} onClick = {() => {props.unfollow(user.id)}}>Unfollow</button>
-                  : <button className={style.button} onClick = {() => {props.follow(user.id)}}>Follow</button>
+                  ? <button className={style.button} onClick = {() => {unfollow(user.id)}}>Unfollow</button>
+                  : <button className={style.button} onClick = {() => {follow(user.id)}}>Follow</button>
                 }
                 </div>
               </div>

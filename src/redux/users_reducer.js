@@ -1,4 +1,5 @@
 import { getUsers } from '../api/api';
+import { updateObjectInArray } from '../utils/array_mapping';
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -25,25 +26,27 @@ const usersReducer = (state = initialState, action) => {
     case FOLLOW:
       return {
         ...state,
+        usersList: updateObjectInArray(state.usersList, action.userId, 'id', { followed: true })
         //! мы перебираем весь массив пользователей и меняем followed только того, чье id пришло к нам в action
-        usersList: state.usersList.map((user) => {
-          if (user.id === action.userId) {
-            return { ...user, followed: true };
-          }
-          return user;
-        })
+        // usersList: state.usersList.map((user) => {
+        //   if (user.id === action.userId) {
+        //     return { ...user, followed: true };
+        //   }
+        //   return user;
+        // })
       };
     case UNFOLLOW:
       console.log("hello unfollow");
       return {
         ...state,
+        usersList: updateObjectInArray(state.usersList, action.userId, 'id', { followed: false })
         //! мы перебираем весь массив пользователей и меняем followed только того, чье id пришло к нам в action
-        usersList: state.usersList.map((user) => {
-          if (user.id === action.userId) {
-            return { ...user, followed: false };
-          }
-          return user;
-        })
+        // usersList: state.usersList.map((user) => {
+        //   if (user.id === action.userId) {
+        //     return { ...user, followed: false };
+        //   }
+        //   return user;
+        // })
       };
     case SET_USERS_LIST:
       return { ...state, usersList: action.users }; //! добавляем в state новых пользователей которые пришли к нам в action (из базы данных)
@@ -86,29 +89,26 @@ export const toggleIsCurrentPageProgress = (isPageChangeInProgress) => {
 //! Создаем thunk и оборачиваем ее в thunkCreator (это делается для того чтобы передать в нашу функцию то чего ей не хватает для работы, в нашем слачае это currentPage и pageSize)
 export const getUsersThunkCreator = (currentPage, pageSize) => {
   //! это наша thunk
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(toggleIsFetching(true));
-
-    getUsers(currentPage, pageSize).then(data => {
-      dispatch(toggleIsFetching(false));
-      dispatch(setUsersList(data.result));
-      dispatch(setTotalUsersCount(data.count));
-    });
+    let response = await getUsers(currentPage, pageSize);
+    dispatch(toggleIsFetching(false));
+    dispatch(setUsersList(response.data.result));
+    dispatch(setTotalUsersCount(response.data.count));
   }
 }
 
 export const pageChangedThunkCreator = (pageNumber, pageSize) => {
   //! это наша thunk
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(toggleIsFetching(true));
     dispatch(toggleIsCurrentPageProgress(true));
     dispatch(setCurrentPage(pageNumber));
 
-    getUsers(pageNumber, pageSize).then(data => {
-      dispatch(toggleIsFetching(false));
-      dispatch(toggleIsCurrentPageProgress(false));
-      dispatch(setUsersList(data.result));
-    });
+    let response = await getUsers(pageNumber, pageSize);
+    dispatch(toggleIsFetching(false));
+    dispatch(toggleIsCurrentPageProgress(false));
+    dispatch(setUsersList(response.data.result));
   }
 }
 
